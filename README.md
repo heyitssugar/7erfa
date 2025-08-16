@@ -1,19 +1,40 @@
 # 7erfa Platform
 
-A modern platform connecting customers with local craftsmen. Built with Next.js 14 and NestJS.
+7erfa is a modern platform connecting customers with local craftsmen (Electricians, Mechanics, Decorators, Movers, etc.). Built with Next.js 14 and NestJS, it supports real-time scheduling, secure payments, and comprehensive service management.
 
-## Features
+## 🌟 Features
 
-- Discovery and booking of local craftsmen
-- Real-time scheduling and availability management
-- Secure payments via wallet + Paymob integration
-- Reviews and ratings system
-- Real-time chat and notifications
-- Comprehensive admin console
-- Multi-language support (English/Arabic)
-- PWA support for mobile usage
+- **User Management**
+  - Customer and craftsman registration
+  - Role-based access control
+  - Profile management
+  - KYC verification for craftsmen
 
-## Tech Stack
+- **Service Discovery**
+  - Location-based search
+  - Category filtering
+  - Rating and review system
+  - Real-time availability checking
+
+- **Booking System**
+  - Real-time scheduling
+  - Automated reminders
+  - Service tracking
+  - Payment processing
+
+- **Communication**
+  - Real-time chat
+  - Push notifications
+  - Email notifications
+  - Multi-language support (English/Arabic)
+
+- **Payment Integration**
+  - Secure wallet system
+  - Paymob integration
+  - Transaction history
+  - Automated settlements
+
+## 🚀 Tech Stack
 
 ### Frontend
 - Next.js 14 with App Router
@@ -23,6 +44,7 @@ A modern platform connecting customers with local craftsmen. Built with Next.js 
 - Zustand
 - Socket.IO Client
 - MapLibre GL
+- RTL Support
 
 ### Backend
 - NestJS
@@ -33,58 +55,96 @@ A modern platform connecting customers with local craftsmen. Built with Next.js 
 - Bull Queue
 - JWT Authentication
 
-## Development Setup
+### DevOps
+- Docker & Docker Compose
+- GitHub Actions CI/CD
+- Prometheus & Grafana
+- Nginx
+- SSL/TLS
 
-1. Prerequisites:
-   - Docker and Docker Compose
-   - Node.js 20.x
-   - npm
+## 📦 Prerequisites
 
-2. Clone the repository:
+- Node.js 20.x
+- Docker & Docker Compose
+- MongoDB
+- Redis
+
+## 🛠️ Installation
+
+1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/heyitssugar/7erfa.git
    cd 7erfa
    ```
 
-3. Environment Setup:
-   - Copy `.env.example` to `.env` in both frontend and backend directories
-   - Update environment variables as needed
+2. Install dependencies:
+   ```bash
+   # Frontend
+   cd frontend
+   npm install
 
-4. Start Development Environment:
+   # Backend
+   cd ../backend
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   # Copy example env files
+   cp .env.example .env
+   ```
+
+4. Start development environment:
    ```bash
    docker-compose up
    ```
 
-   This will start:
-   - Frontend at http://localhost:3000
-   - Backend at http://localhost:4000
-   - MongoDB at localhost:27017
-   - Redis at localhost:6379
+5. Initialize database:
+   ```bash
+   cd backend
+   npm run seed
+   ```
 
-## Project Structure
+## 🌐 Deployment
 
-```
-7erfa/
-├── frontend/          # Next.js frontend
-│   ├── src/
-│   │   ├── app/      # App router pages
-│   │   ├── components/
-│   │   └── lib/      # Utilities and helpers
-│   └── public/
-├── backend/          # NestJS backend
-│   └── src/
-│       ├── auth/     # Authentication
-│       ├── users/    # User management
-│       └── ...       # Other modules
-└── docker-compose.yml
+See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed deployment instructions.
+
+## 🧪 Testing
+
+```bash
+# Frontend tests
+cd frontend
+npm test
+
+# Backend tests
+cd backend
+npm test
 ```
 
-## Contributing
+## 📚 Documentation
 
-1. Create a feature branch
-2. Make your changes
-3. Submit a pull request
+- [API Documentation](docs/API.md)
+- [Database Schema](docs/DATABASE.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [Contributing Guide](docs/CONTRIBUTING.md)
 
-## License
+## 🤝 Contributing
 
-[License Type] - See LICENSE file for details
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **@heyitssugar** - *Initial work*
+
+## 🙏 Acknowledgments
+
+- Thanks to all contributors who have helped shape 7erfa
+- Special thanks to the open-source community for the amazing tools that made this possible
