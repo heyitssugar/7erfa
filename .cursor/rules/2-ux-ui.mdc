@@ -1,0 +1,66 @@
+---
+description: This is The UX / UI (Wireframe-Level Descriptions) for Project "7erfa"
+alwaysApply: false
+---
+#  UX / UI (Wireframe-Level Descriptions)
+
+## Public Pages
+
+Home:
+
+Hero: Search bar (craft, city/area), CTA buttons (Find a Pro, Become a Pro).
+Categories grid (Electricians, Mechanics, Decorators, Movers, Appliance Repair, …).
+“How It Works” (3 steps): Search → Book → Pay.
+Featured craftsmen & top-rated.
+Testimonials, trust & safety badges.
+Footer: links (About, Help, Terms, Privacy, Contact).
+
+Search / Browse
+
+Filters: craft, price range, rating, availability window, distance.
+Map + list view (cards with rating, price, next slot, distance).
+Sort: Rating, Price, Earliest availability, Most booked.
+
+Craftsman Profile
+
+Header: photo, name, craft tags, rating, location, price.
+Tabs: About / Portfolio / Reviews / Availability / Chat.
+Booking widget with real-time slot selector.
+Auth: Login, Signup, Forgot Password, Email Verify screens.
+
+Customer Dashboard
+
+Overview: Upcoming bookings, wallet balance, quick actions.
+Bookings: List + details (status, chat link, tracking if live).
+Wallet: Balance, top-up (Paymob), transactions.
+Reviews: Pending reviews to write, past reviews.
+Settings: Profile, addresses, notifications, language.
+
+Craftsman Dashboard
+
+Overview: Today’s schedule, earnings snapshot, new requests.
+Calendar: Availability editor (recurring rules + exceptions), confirmed jobs.
+Requests: Pending requests (Accept/Reject). SLA timers.
+Jobs: Active, Scheduled, Completed, Cancellations.
+Earnings: Wallet balance, withdraw/payout, fee breakdown, invoices.
+Reviews: Incoming reviews, reply to reviews.
+Subscription: Plan details, upgrade/downgrade.
+Settings: Profile, service areas, pricing, portfolio, KYC.
+
+Admin Panel
+
+Dashboard: KPIs (GMV, bookings, success rate, disputes, churn).
+Users: Search, verify craftsmen (KYC), suspend/reactivate.
+Bookings: Monitor, reassign, refunds, SLAs.
+Payments: Wallet ledger, payouts, fees.
+Content: Reviews moderation, reports, disputes.
+Catalog: Manage categories, tags, city/area taxonomy.
+Plans: Subscription products, pricing, feature flags.
+Configs: Platform fees, cancellation policies, notification templates.
+Logs: Webhook logs, audit logs, error console.
+
+Visual & i18n
+
+Theme: Clean, modern; Tailwind + shadcn/ui; dark mode optional.
+i18n: next-intl/react-i18next; Arabic RTL + English LTR switch; localized dates/currency (default EGP; multi-currency capable).
+Accessibility: WCAG 2.2 AA, keyboard nav, proper contrast.

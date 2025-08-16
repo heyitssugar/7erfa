@@ -1,0 +1,55 @@
+---
+description: Frontend Structure (Next.js)
+alwaysApply: false
+---
+# Directory Outline
+```
+/app
+  /(public)
+    page.tsx               // Home
+    search/page.tsx        // Browse
+    craftsman/[id]/page.tsx
+    auth/(routes)          // login, signup, verify
+  /dashboard
+    /customer
+      page.tsx             // overview
+      bookings/page.tsx
+      wallet/page.tsx
+      reviews/page.tsx
+      settings/page.tsx
+    /craftsman
+      page.tsx
+      calendar/page.tsx
+      requests/page.tsx
+      jobs/page.tsx
+      earnings/page.tsx
+      reviews/page.tsx
+      subscription/page.tsx
+      settings/page.tsx
+    /admin
+      page.tsx
+      users/page.tsx
+      bookings/page.tsx
+      payments/page.tsx
+      disputes/page.tsx
+      content/page.tsx
+      catalog/page.tsx
+      plans/page.tsx
+      logs/page.tsx
+/components (UI)
+/lib (api client, i18n, utils)
+/styles (Tailwind)
+```
+
+# Key Components
+
+BookingWidget, SlotPicker, MapListSwitcher, RatingStars, WalletCard, ChatPanel, TrackingMap, AvailabilityEditor.
+AdminTable, KycReviewModal, DisputeResolutionWizard.
+
+Tech Choices
+
+UI: TailwindCSS + shadcn/ui; Headless components; Lucide icons.
+State: React Query (TanStack) for data fetching; Zustand for local UI state.
+i18n: next-intl with AR RTL.
+Maps: MapLibre/Leaflet (open-source) or Google Maps if desired.
+Forms: React Hook Form + Zod schema validation.

@@ -1,0 +1,34 @@
+---
+description: This is The System Overview & Architecture for Project "7erfa"
+alwaysApply: false
+---
+# System Overview & Architecture
+
+## High-Level Modules
+
+Web App (Next.js 14, App Router, TypeScript)
+Public marketing pages, search, booking, wallet, reviews.
+User Dashboard & Craftsman Dashboard.
+Admin Panel (role-gated) in the same app or separate instance.
+PWA support for mobile usage; offline cache for static assets.
+API Layer (NestJS, TypeScript)
+REST + WebSocket gateway (Socket.IO) for chat, notifications, live tracking.
+Authentication, authorization (RBAC), rate limiting, input validation.
+Paymob integration (top-ups, payouts, webhooks).
+Background job queue (BullMQ) for emails, reminders, ledger settlements.
+Database: MongoDB Atlas with Mongoose ODM.
+2dsphere indexes for geo-search.
+Cache & Queues: Redis (sessions, rate-limit, caching, queues).
+Object Storage: S3-compatible (e.g., AWS S3/MinIO) for profile photos, portfolio.
+Email/SMS: Email via Resend/SendGrid/Nodemailer; optional SMS via Twilio/local aggregator.
+Observability: OpenTelemetry + Grafana/Prometheus; Sentry for errors.
+Infra: Docker & Docker Compose; CI/CD via GitHub Actions; Nginx reverse proxy.
+
+## Security & Compliance
+
+AuthN: JWT access tokens + refresh tokens; Argon2id password hashing.
+AuthZ: RBAC: customer, craftsman, moderator, admin, superadmin.
+Data Security: TLS end-to-end, signed webhooks, CSRF for web forms.
+PII Protection: Minimization, encrypted at rest (MongoDB field-level + KMS), strict access policies.
+Audit & Logs: Immutable audit log for admin actions, payout operations, disputes.
+Compliance Ready: GDPR-friendly UX (export/delete data), cookie consent; local compliance TBD.

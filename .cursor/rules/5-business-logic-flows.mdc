@@ -1,0 +1,77 @@
+---
+description: This is The Business Logic Flows for the Project "7erfa"
+alwaysApply: false
+---
+Onboarding (Customer)
+
+Signup → verify email.
+Optional: add address & phone; enable push/email notifications.
+Explore categories → search → view profiles.
+
+Onboarding (Craftsman)
+
+Signup as craftsman → fill craft types, service areas, pricing, availability.
+Upload KYC (ID, license where applicable) → status pending.
+Admin approves → profile listed; can accept jobs & receive payouts.
+
+Search & Discovery
+
+Geo-aware ranking (distance, rating, subscription boost, responsiveness, availability).
+Filters + sort; map + list.
+
+AI Suggestions:
+
+Cold-start: based on category popularity + distance.
+Warm: cosine similarity over tags + collaborative signals (past bookings, ratings); contextual (time of day, urgency).
+
+Availability & Sloting
+
+Craftsmen define weekly rules + exceptions.
+System computes bookable slots (e.g., 30-min granularity) factoring:
+Existing confirmed bookings & holds.
+Lead time and buffers (setup/travel).
+Travel time (Haversine estimate + configurable multiplier).
+When customer picks a slot → create pending appointment; optionally place a hold.
+Craftsman Accepts within SLA (e.g., 2 hours) → slot locks; otherwise auto-expire.
+
+Payments (Wallet + Escrow)
+
+Top-Up: Customer initiates Paymob order → success webhook → Transaction(type='topup', direction='in') credited to customer wallet.
+Hold at Booking: hold moves funds to a reserved state (not yet to craftsman).
+Completion: On job completion, capture transfers from customer hold → craftsman wallet (minus platform fee; record fee txn).
+
+Cancellation:
+
+Before acceptance or under policy window: release hold fully.
+After acceptance: partial refund per policy; auto-fee handling.
+Payouts: Craftsman requests payout → Paymob payout or manual bank transfer; ledger entries reflect settlement.
+
+Reviews
+
+After completed, customer prompted to rate (1–5) + comment within 7 days.
+Craftsman may post a single reply (immutable edit window 15 minutes).
+Ratings aggregate per craftsman; weighted by recency & volume.
+
+Messaging & Notifications
+
+Real-time chat between matched customer & craftsman.
+Notification triggers (in-app + email/SMS):
+New request, acceptance/rejection, time changes, reminders (24h & 2h), payment status, dispute updates.
+Quiet hours configurable; digest option.
+
+Real-time Tracking (Optional per appointment)
+Craftsman can enable tracking on job day; shares live location during window.
+Privacy: only visible to the relevant customer; purged after 24h.
+
+Subscriptions (Craftsmen)
+
+Plans: Free, Pro, Elite.
+Pro: search boost, portfolio limit ↑, fee discount.
+Elite: badge, highest boost, in-app promotional slots, lowest fees.
+Billing cycle monthly; proration on upgrade/downgrade.
+
+Disputes & Refunds
+
+Customer opens dispute within 72h of completion.
+Admin reviews evidence (chat logs, photos) → resolves → capture/partial refund/refund.
+All steps logged in AuditLog.

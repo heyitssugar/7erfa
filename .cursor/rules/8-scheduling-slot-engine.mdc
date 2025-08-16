@@ -1,0 +1,9 @@
+---
+description: This is The Project Scheduling & Slot Engine
+alwaysApply: false
+---
+Input: AvailabilityRules (weekly), Exceptions (date overrides), Confirmed Appointments, Holds, lead times, buffers.
+Process: Generate slots per day → remove conflicts → apply travel-time padding based on previous/next jobs using distance heuristic.
+Output: Bookable slots for next N days.
+Reservation: Creating a pending appointment optionally places a temporary hold with timeout (e.g., 15 min) to avoid double-booking.
+Auto-expire: Pending requests not accepted in SLA window auto-cancel and release holds.

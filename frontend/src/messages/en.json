@@ -1,0 +1,78 @@
+{
+  "common": {
+    "search": "Search",
+    "findPro": "Find a Pro",
+    "becomePro": "Become a Pro",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings",
+    "dashboard": "Dashboard",
+    "language": "Language"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "role": {
+      "customer": "Customer",
+      "craftsman": "Craftsman"
+    },
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "home": {
+    "hero": {
+      "title": "Find Skilled Craftsmen Near You",
+      "subtitle": "Book trusted professionals for all your needs",
+      "searchPlaceholder": "What service do you need?"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": "Search",
+      "step2": "Book",
+      "step3": "Pay",
+      "step1Desc": "Find the right professional for your needs",
+      "step2Desc": "Choose a convenient time slot",
+      "step3Desc": "Pay securely through our platform"
+    }
+  },
+  "search": {
+    "filters": {
+      "title": "Filters",
+      "price": "Price Range",
+      "rating": "Rating",
+      "availability": "Availability",
+      "distance": "Distance"
+    },
+    "sort": {
+      "title": "Sort By",
+      "rating": "Rating",
+      "price": "Price",
+      "availability": "Earliest Available",
+      "bookings": "Most Booked"
+    }
+  },
+  "booking": {
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "price": "Price",
+    "total": "Total",
+    "book": "Book Now",
+    "confirmation": "Booking Confirmation"
+  },
+  "wallet": {
+    "balance": "Balance",
+    "topup": "Top Up",
+    "withdraw": "Withdraw",
+    "transactions": "Transactions"
+  },
+  "reviews": {
+    "write": "Write a Review",
+    "rating": "Rating",
+    "comment": "Comment"
+  }
+}

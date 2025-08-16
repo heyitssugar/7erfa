@@ -1,0 +1,17 @@
+---
+description: This is The Project Notifications Matrix
+alwaysApply: false
+---
+# Notifications Matrix
+
+```
+| Event | Channel | Recipient | Timing |
+|-------|---------|-----------|--------|
+| New booking request | In-app + Email/SMS | Craftsman | Immediately |
+| Request accepted | In-app + Email | Customer | Immediately |
+| Appointment reminder | In-app + Email/SMS | Both | 24h & 2h before |
+| Payment top-up success | In-app + Email | Customer | Webhook-triggered |
+| Job completed | In-app | Customer | Immediately |
+| Review reminder | In-app + Email | Customer | +6h after completion |
+| Dispute update | In-app + Email | Both | On status change |
+```

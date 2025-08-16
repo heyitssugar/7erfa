@@ -1,0 +1,78 @@
+{
+  "common": {
+    "search": "بحث",
+    "findPro": "ابحث عن محترف",
+    "becomePro": "كن محترفًا",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "dashboard": "لوحة التحكم",
+    "language": "اللغة"
+  },
+  "auth": {
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "role": {
+      "customer": "عميل",
+      "craftsman": "حرفي"
+    },
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "noAccount": "ليس لديك حساب؟",
+    "hasAccount": "لديك حساب بالفعل؟"
+  },
+  "home": {
+    "hero": {
+      "title": "ابحث عن حرفيين ماهرين بالقرب منك",
+      "subtitle": "احجز مع محترفين موثوقين لجميع احتياجاتك",
+      "searchPlaceholder": "ما الخدمة التي تحتاجها؟"
+    },
+    "howItWorks": {
+      "title": "كيف يعمل",
+      "step1": "ابحث",
+      "step2": "احجز",
+      "step3": "ادفع",
+      "step1Desc": "اعثر على المحترف المناسب لاحتياجاتك",
+      "step2Desc": "اختر وقتًا مناسبًا",
+      "step3Desc": "ادفع بأمان عبر منصتنا"
+    }
+  },
+  "search": {
+    "filters": {
+      "title": "التصفية",
+      "price": "نطاق السعر",
+      "rating": "التقييم",
+      "availability": "التوفر",
+      "distance": "المسافة"
+    },
+    "sort": {
+      "title": "ترتيب حسب",
+      "rating": "التقييم",
+      "price": "السعر",
+      "availability": "أقرب موعد متاح",
+      "bookings": "الأكثر حجزًا"
+    }
+  },
+  "booking": {
+    "selectDate": "اختر التاريخ",
+    "selectTime": "اختر الوقت",
+    "price": "السعر",
+    "total": "الإجمالي",
+    "book": "احجز الآن",
+    "confirmation": "تأكيد الحجز"
+  },
+  "wallet": {
+    "balance": "الرصيد",
+    "topup": "شحن الرصيد",
+    "withdraw": "سحب",
+    "transactions": "المعاملات"
+  },
+  "reviews": {
+    "write": "اكتب تقييمًا",
+    "rating": "التقييم",
+    "comment": "التعليق"
+  }
+}

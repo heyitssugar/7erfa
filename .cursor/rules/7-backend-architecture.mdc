@@ -1,0 +1,22 @@
+---
+description: This is The Backend Architecture (NestJS)
+alwaysApply: false
+---
+
+Modules
+
+AuthModule (JWT, refresh, email verify).
+UsersModule, CraftsmenModule, CatalogModule.
+SearchModule (geo queries, ranking).
+AvailabilityModule (rules, slots, calendar service).
+AppointmentsModule (lifecycle, policies, SLA timers).
+WalletModule (ledger, holds, capture, payouts) + PaymobModule (webhooks, signatures).
+ReviewsModule, MessagingModule (WS gateway), NotificationsModule.
+SubscriptionsModule, AdminModule, DisputesModule.
+JobsModule (BullMQ queues: emails, reminders, settlement, cleanup).
+
+Cross-Cutting
+
+Pipes & Guards: ValidationPipe, AuthGuard, RolesGuard.
+Interceptors: Logging, Caching, Sentry.
+Config: @nestjs/config with env validation; secrets from Vault

@@ -1,0 +1,77 @@
+---
+description: This is The API Design (REST + WebSockets) for Project "7erfa"
+alwaysApply: false
+---
+ API Design (REST + WebSockets)
+
+Base URL: /api/v1. All JSON responses include { success, data, error }.
+
+Auth:
+
+POST /auth/signup → { email, password, role? } → Email verification flow.
+POST /auth/login → { email, password } → { accessToken, refreshToken }.
+POST /auth/refresh → { refreshToken } → new tokens.
+POST /auth/verify-email → { token }.
+POST /auth/forgot → { email } → magic link/OTP.
+POST /auth/reset → { token, newPassword }.
+
+Users:
+
+GET /me → profile + role.
+PATCH /me → update profile, language, notification prefs.
+GET /me/wallet → balance & transactions (paginated).
+
+Catalog & Search
+
+GET /categories → tree.
+GET /craftsmen → query params: q, categoryId, minRating, maxDistanceKm, availableFrom, availableTo, lat, lng, sort → list + facets.
+GET /craftsmen/:id → profile, rating, portfolio, next slots.
+GET /craftsmen/:id/availability → next 30 days of bookable windows.
+
+Availability & Booking
+
+POST /appointments/quote → { craftsmanId, when, duration } → price breakdown + hold preview.
+POST /appointments (customer) → create pending booking (optionally place wallet hold).
+GET /appointments/:id → details.
+PATCH /appointments/:id/cancel (customer or craftsman per policy).
+PATCH /appointments/:id/accept (craftsman) → reserves slot; notifies customer.
+PATCH /appointments/:id/reject (craftsman).
+PATCH /appointments/:id/start (craftsman) → in_progress; optional tracking start.
+PATCH /appointments/:id/complete (craftsman) → triggers capture & review invitation.
+POST /appointments/:id/dispute → opens dispute.
+
+Wallet & Payments (Paymob)
+
+POST /wallet/topup-intent → creates Paymob order & payment key; returns checkout URL.
+POST /wallet/webhook/paymob (public) → verifies HMAC; updates Transaction.
+POST /wallet/payout-request (craftsman) → initiates payout via Paymob (if supported) or manual review.
+POST /appointments/:id/hold → hold funds on customer wallet.
+POST /appointments/:id/capture → move hold → craftsman wallet (minus fees).
+POST /appointments/:id/release → release hold back to customer (cancel/refund).
+
+Reviews
+
+POST /appointments/:id/review → { rating, comment } (customer only, after completion).
+POST /reviews/:id/reply (craftsman).
+
+Messaging (WebSocket + REST)
+
+WS: /ws → auth via JWT; rooms per convoId.
+POST /conversations → { craftsmanId } → new or existing convo.
+GET /conversations → list.
+GET /conversations/:id/messages (paginated).
+WS Event: message:send → broadcast to room; store in DB.
+
+Tracking
+
+WS Event: tracking:start / tracking:coords { lat, lng } (craftsman).
+WS Event: tracking:stop.
+GET /appointments/:id/tracking (customer authorized) → last known coords if enabled.
+
+Admin
+
+GET /admin/kyc/pending | PATCH /admin/kyc/:craftsmanId (approve/reject).
+GET /admin/disputes | PATCH /admin/disputes/:id.
+GET /admin/payments/ledger | POST /admin/payouts/:craftsmanId.
+POST /admin/categories … CRUD; POST /admin/plans … CRUD.
+GET /admin/audit-logs | GET /admin/webhook-logs.

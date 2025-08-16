@@ -1,0 +1,130 @@
+---
+description: This is The Data Model (MongoDB Collections) for Project "7erfa"
+alwaysApply: false
+---
+# Data Model (MongoDB Collections)
+
+## Types shown with suggested validators & example indexes.
+
+Users:
+```
+User {
+  _id: ObjectId,
+  role: 'customer' | 'craftsman' | 'moderator' | 'admin' | 'superadmin',
+  email: string (unique, lowercased),
+  emailVerifiedAt?: Date,
+  phone?: string,
+  passwordHash: string,
+  firstName: string,
+  lastName: string,
+  avatarUrl?: string,
+  language: 'en' | 'ar',
+  addresses?: [{ label, line1, city, area, lat, lng }],
+  location?: { type: 'Point', coordinates: [lng, lat] }, // 2dsphere
+  notificationPrefs: { email: boolean, sms: boolean, push: boolean },
+  createdAt: Date, updatedAt: Date
+}
+// Indexes: email unique; role; location 2dsphere
+```
+
+Craftsmen:
+```
+Craftsman {
+  _id: ObjectId, userId: ObjectId (ref User),
+  crafts: [{ categoryId: ObjectId, title?: string }],
+  serviceAreas: [{ city, area, radiusKm }],
+  hourlyRate?: number, baseCalloutFee?: number,
+  bio?: string, yearsExperience?: number,
+  portfolio: [{ url, caption }],
+  rating: { avg: number, count: number },
+  availabilityRules: [{
+    // RRULE-like recurring weekly windows
+    dayOfWeek: number, // 0-6
+    startTime: string, // '09:00'
+    endTime: string,   // '17:00'
+  }],
+  availabilityExceptions: [{ date: YYYY-MM-DD, windows: [{ start, end }] }],
+  kyc: { status: 'unsubmitted'|'pending'|'approved'|'rejected', docs: [{type,url}], notes?: string },
+  subscription: { planId?: ObjectId, status?: 'active'|'canceled'|'past_due', renewAt?: Date },
+  stats: { jobsCompleted: number, onTimeRate: number },
+  createdAt: Date, updatedAt: Date
+}
+// Indexes: userId, crafts.categoryId, rating.avg desc, serviceAreas.city/area
+```
+
+Categories & Taxonomy:
+```
+Category { _id, slug (unique), name: {en, ar}, icon, parentId?: ObjectId }
+```
+
+Service Offerings (Optional granularity):
+```
+ServiceOffering {
+  _id, craftsmanId, categoryId, title, description, pricingType: 'fixed'|'hourly',
+  price?: number, minHours?: number,
+  leadTimeMins?: number, bufferMins?: number
+}
+```
+
+Appointments / Bookings:
+```
+Appointment {
+  _id, customerId, craftsmanId, categoryId,
+  address: { line1, city, area, lat, lng },
+  scheduledAt: Date, durationMins: number,
+  status: 'pending'|'accepted'|'rejected'|'canceled'|'in_progress'|'completed'|'disputed'|'refunded',
+  price: { currency: 'EGP', subtotal: number, fees: number, total: number },
+  walletHoldTxnId?: ObjectId, // escrow hold
+  notes?: string, photos?: [url],
+  tracking: { enabled: boolean, startedAt?: Date, lastLat?: number, lastLng?: number },
+  reviewId?: ObjectId,
+  createdAt, updatedAt
+}
+// Indexes: craftsmanId + scheduledAt; customerId; status; address.geo 2dsphere
+```
+
+Wallets & Ledger:
+```
+Wallet { _id, ownerType: 'user'|'craftsman', ownerId, balanceCents: number, currency: 'EGP', createdAt, updatedAt }
+
+Transaction {
+  _id, walletId, type: 'topup'|'hold'|'capture'|'release'|'payout'|'refund'|'fee',
+  amountCents: number, currency: 'EGP',
+  related: { appointmentId?: ObjectId, paymobRef?: string },
+  status: 'pending'|'succeeded'|'failed',
+  direction: 'in'|'out',
+  createdAt, updatedAt
+}
+// Indexes: walletId, createdAt desc, related.appointmentId
+```
+
+Reviews:
+```
+Review { _id, appointmentId, customerId, craftsmanId, rating: 1..5, comment, reply?: { text, at }, createdAt }
+// Indexes: craftsmanId, rating desc, createdAt desc
+```
+
+Messaging (Chat):
+```
+Conversation { _id, participants: [userId, craftsmanId], lastMessageAt, createdAt }
+Message { _id, convoId, senderId, body, attachments?: [url], readBy: [userId], createdAt }
+```
+
+Notifications:
+```
+Notification { _id, userId, type, title, body, data, read: boolean, createdAt }
+```
+
+Subscriptions (Craftsmen):
+```
+Plan { _id, name, priceEGP, features: { badge: boolean, searchBoost: number, portfolioLimit: number, lowerFees: boolean } }
+Subscription { _id, craftsmanId, planId, status, currentPeriodEnd, cancelAtPeriodEnd }
+```
+
+Admin / Moderation:
+```
+Dispute { _id, appointmentId, openedBy, reason, status, resolutionNotes, createdAt, updatedAt }
+Report { _id, reporterId, targetType, targetId, reason, createdAt }
+AuditLog { _id, actorId, action, targetType, targetId, meta, createdAt }
+WebhookLog { _id, provider: 'paymob', event, payloadRef, status, receivedAt }
+```

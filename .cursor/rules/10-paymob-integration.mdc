@@ -1,0 +1,11 @@
+---
+description: This is the Project Paymob Integration (Key Points)
+alwaysApply: false
+---
+Top-Up Flow: Create order → generate payment key → redirect to Paymob iframe/checkout → webhook verifies hmac → credit customer wallet.
+
+Holds/Captures: Implement as internal wallet ledger operations tied to appointment lifecycle (the external payment occurs only on top-up); craft-agnostic.
+
+Payouts: If using Paymob payouts, integrate their disbursement APIs; otherwise mark as manual with bank transfer reference.
+
+Webhooks: Idempotent processing; persist WebhookLog; verify signatures; retry-safe.
